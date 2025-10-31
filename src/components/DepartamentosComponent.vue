@@ -23,7 +23,11 @@
                         :to="`/updatedepartamento/${departamento.numero}`">
                             Modificar
                         </router-link>
-                        <button @click="deleteDepartamento(departamento.numero)" class="btn btn-danger">Borrar</button>
+                        <!-- <button @click="deleteDepartamento(departamento.numero)" class="btn btn-danger">Borrar</button> -->
+                        <router-link class="btn btn-danger mx-2" 
+                        :to="`/delete/${departamento.numero}`">
+                            Borrar
+                        </router-link>
                     </td>        
                     
                 </tr>
@@ -36,6 +40,7 @@
 </template>
 
 <script>
+    import Swal from 'sweetalert2'
     import ServiceDepartamentos from './../services/ServiceDepartamentos' 
     const service = new ServiceDepartamentos()
     export default{
@@ -47,21 +52,86 @@
             }
         },
         mounted(){
-            service.getDepartamentos().then(response => {
-                this.departamentos = response
-                console.log(this.departamentos)
-                this.statusTabla = true
-            })
+            this.loadDepartamentos()
         }, 
         methods: {
             deleteDepartamento(id){
-                console.log(id)
-                // service.deleteDepartamento(id).then(response => {
-                //     console.log(response)
-                //     alert("Se ha eliminado el departamento")
-                // })
+                Swal.fire({
+                    title: "¿Estás seguro de eliminar el departamento?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, eliminar!",
+                    cancelButtonText: "Cancelar"
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log(id)
+                        service.deleteDepartamento(id).then(response => {
+                            console.log(response)
+                            Swal.fire({
+                                title: "Departamento eliminado correctamente!",
+                                icon: "success"
+                            });
+                            this.loadDepartamentos()
+                        })
+                        
+                    }
+                });
+                
+                
+            },
+            loadDepartamentos(){
+                this.statusTabla = false
+                service.getDepartamentos().then(response => {
+                    this.departamentos = response
+                    console.log(this.departamentos)
+                    this.statusTabla = true
+                })
             }
         }
 
     }
 </script>
+
+<style scoped>
+.container {
+  background-color: transparent !important;
+}
+
+.table {
+  background-color: #2d2d2d !important;
+  color: #e0e0e0 !important;
+  border-color: #404040 !important;
+}
+
+.table thead {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+.table thead th {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+  border-color: #404040 !important;
+}
+
+.table tbody tr {
+  background-color: #2d2d2d !important;
+  border-color: #404040 !important;
+}
+
+.table tbody tr:hover {
+  background-color: #353535 !important;
+}
+
+.table td, .table th {
+  border-color: #404040 !important;
+  color: #e0e0e0 !important;
+  background-color: transparent !important;
+}
+
+.table td {
+  background-color: #2d2d2d !important;
+}
+</style>

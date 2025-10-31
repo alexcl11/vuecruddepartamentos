@@ -10,11 +10,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="text-primary mb-3">{{this.$route.params.nombre}}</h4>
-                        
-                        <div >
-                            <h6 class="text-muted">ID Departamento</h6>
-                            <span class="badge bg-secondary">{{this.$route.params.id}}</span>
+                        <div class=" container d-flex">
+                            
+                            <h4 class="text-primary "><span class="badge bg-secondary">Nº{{this.$route.params.id}}</span>  {{this.$route.params.nombre}}</h4>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -36,3 +34,45 @@
         name: "DetailsComponent"
     }
 </script>
+
+<style scoped>
+.container {
+  background-color: transparent;
+}
+
+.card {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #404040;
+}
+
+.card-header {
+  background-color: #1e3a5f !important;
+  color: #ffffff;
+  border-color: #404040;
+}
+
+.card-body {
+  background-color: #2d2d2d;
+}
+
+h3, h4, h6 {
+  color: #e0e0e0;
+}
+
+.text-primary {
+  color: #5da3ff !important;
+}
+
+.text-muted {
+  color: #aaa !important;
+}
+
+.badge {
+  background-color: #4a4a4a !important;
+}
+
+address {
+  color: #e0e0e0;
+}
+</style>

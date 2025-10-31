@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <router-link class="navbar-brand" to="/">CRUD Departamentos</router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,17 +13,6 @@
                 <li class="nav-item">
                 <router-link class="nav-link" to="/createdepartamento">Crear Departamento</router-link>
                 </li>
-                <li class="nav-item dropdown">
-                <router-link class="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </router-link>
-                <ul class="dropdown-menu">
-                    <li><router-link class="dropdown-item" to="#">Action</router-link></li>
-                    <li><router-link class="dropdown-item" to="#">Another action</router-link></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><router-link class="dropdown-item" to="#">Something else here</router-link></li>
-                </ul>
-                </li>
             </ul>
             </div>
         </div>
@@ -35,3 +24,31 @@
         name: "MenuComponent", 
     }
 </script>
+
+<style scoped>
+.navbar {
+  background-color: #2d2d2d !important;
+  border-bottom: 1px solid #404040;
+}
+
+.navbar-brand {
+  color: #e0e0e0 !important;
+  font-weight: bold;
+}
+
+.navbar-brand:hover {
+  color: #ffffff !important;
+}
+
+.nav-link {
+  color: #b0b0b0 !important;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+.nav-link.active {
+  color: #ffffff !important;
+}
+</style>

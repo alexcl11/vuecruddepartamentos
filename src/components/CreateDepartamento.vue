@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    import Swal from 'sweetalert2'
     import ServiceDepartamentos from '@/services/ServiceDepartamentos'
     const service = new ServiceDepartamentos()
     export default{
@@ -39,10 +40,47 @@
                 }
                 service.createDepartamento(departamento).then(response => {
                     console.log(response)
-                    alert("Se ha creado correctamente")
+                    Swal.fire({
+                        title: "Departamento creado correctamente!",
+                        icon: "success"
+                    });
                     this.$router.push("/")
                 })
             }
         }
     }
 </script>
+
+<style scoped>
+h1 {
+  color: #e0e0e0;
+  margin-top: 20px;
+}
+
+.form {
+  background-color: #2d2d2d;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #404040;
+  margin-top: 20px;
+}
+
+label {
+  color: #e0e0e0;
+  margin-top: 10px;
+  display: block;
+  text-align: left;
+}
+
+.form-control {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border-color: #404040;
+}
+
+.form-control:focus {
+  background-color: #252525;
+  color: #e0e0e0;
+  border-color: #0d6efd;
+}
+</style>
