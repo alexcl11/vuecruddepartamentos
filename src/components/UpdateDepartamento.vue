@@ -10,7 +10,7 @@
         <input type="text" class="form-control" v-model="departamento.localidad"/>
         <button v-if="departamento.numero && departamento.nombre && departamento.localidad" 
         class="btn btn-success mt-2">Crear</button>
-        <button  type="submit" v-else disabled class="btn btn-success mt-2">Crear</button>
+        <button  type="submit" v-else disabled class="btn btn-success mt-2">Modificar</button>
         
     </form>
     </div>
